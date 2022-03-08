@@ -30,7 +30,7 @@ export default class MusicCard extends Component {
     }
   }
 
-  handleClick = async () => {
+  handleChange = async () => {
     this.setState({ isLoading: true });
     const { track } = this.props;
     await addSong(track);
@@ -57,7 +57,7 @@ export default class MusicCard extends Component {
                   type="checkbox"
                   checked={ isChecked }
                   data-testid={ `checkbox-music-${trackId}` }
-                  onClick={ () => { this.handleClick(); } }
+                  onChange={ () => { this.handleChange(); } }
                 />
               </label>
             </section>
