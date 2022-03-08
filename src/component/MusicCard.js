@@ -1,25 +1,45 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 export default class MusicCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
+      isChecked: false,
+      favoritesMusic: [],
     };
+  }
+
+  componentDidMount() {
+    this.handleFavoritesMusics();
+  }
+
+  handleFavoritesMusics = async () => {
+    this.setState({ isLoading: true });
+    const musicsSaved = await getFavoriteSongs();
+    this.setState({ isLoading: false, favoritesMusic: musicsSaved });
+    const { favoritesMusic } = this.state;
+    const { track } = this.props;
+    const isFavorite = favoritesMusic.find((music) => (
+      music.trackName.includes(track.trackName)
+    ));
+    if (isFavorite) {
+      this.setState({ isChecked: true });
+    }
   }
 
   handleClick = async () => {
     this.setState({ isLoading: true });
     const { track } = this.props;
     await addSong(track);
-    this.setState({ isLoading: false });
+    this.setState({ isLoading: false, isChecked: true });
   }
 
   render() {
     const { track: { trackName, previewUrl, trackId } } = this.props;
-    const { isLoading } = this.state;
+    const { isLoading, isChecked } = this.state;
     return (
       <div>
         {isLoading
@@ -35,6 +55,7 @@ export default class MusicCard extends Component {
                 <input
                   id="favorites"
                   type="checkbox"
+                  checked={ isChecked }
                   data-testid={ `checkbox-music-${trackId}` }
                   onClick={ () => { this.handleClick(); } }
                 />
@@ -51,6 +72,6 @@ MusicCard.propTypes = {
   track: PropType.shape({
     trackName: PropType.string,
     previewUrl: PropType.string,
-    trackId: PropType.string,
+    trackId: PropType.number,
   }).isRequired,
 };
