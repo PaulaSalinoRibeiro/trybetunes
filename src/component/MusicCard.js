@@ -40,7 +40,9 @@ export default class MusicCard extends Component {
   removeFavoriteMusic = async () => {
     this.setState({ isLoading: true });
     const { track } = this.props;
+    const { removeMusic } = this.props;
     await removeSong(track);
+    removeMusic(track);
     this.setState({ isLoading: false, isChecked: false });
   }
 
@@ -89,5 +91,6 @@ MusicCard.propTypes = {
     trackName: PropType.string,
     previewUrl: PropType.string,
     trackId: PropType.number,
-  }).isRequired,
-};
+  }),
+  removeMusic: PropType.func,
+}.isRequired;

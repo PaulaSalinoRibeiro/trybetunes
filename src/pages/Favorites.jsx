@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../component/Header';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import MusicCard from '../component/MusicCard';
 
 export default class Favorites extends Component {
@@ -21,13 +21,20 @@ export default class Favorites extends Component {
     this.setState({ favorites: musics, isLoading: false });
   }
 
+  removeMusic = (track) => {
+    this.setState({ isLoading: true });
+    const { favorites } = this.state;
+    const filteredMusics = favorites.filter((music) => music !== track);
+    this.setState({ favorites: filteredMusics, isLoading: false });
+  }
+
   renderListOfMusic = () => {
     const { favorites } = this.state;
     return (
       <section>
         {favorites.map((music) => (
           <section key={ music.trackName }>
-            <MusicCard track={ music } />
+            <MusicCard track={ music } removeMusic={ this.removeMusic } />
           </section>
         ))}
       </section>

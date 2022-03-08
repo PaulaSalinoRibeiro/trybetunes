@@ -7,7 +7,9 @@ export default class ProfileEdit extends Component {
     super(props);
     this.state = {
       isLoading: true,
+      isDisable: true,
       infoUser: undefined,
+      inputFomr: undefined,
     };
   }
 
@@ -20,47 +22,72 @@ export default class ProfileEdit extends Component {
     this.setState({ isLoading: false, infoUser });
   }
 
+  validated = () => {
+    const { inputFomr } = this.state;
+    //
+  }
+
+  handleChange = ({ target }) => {
+    const { name } = target;
+    const value = (target.type === 'checked') ? target.checked : target.value;
+    this.setState({ inputFomr: { [name]: value } }, this.validated());
+  }
+
+  handleClick = (event) => {
+    event.preventDefault();
+  }
+
   renderForms = () => {
-    const { infoUser } = this.state;
+    const { infoUser, isDisable } = this.state;
     return (
       <form>
         <label htmlFor="name">
           Nome:
           <input
+            onChange={ this.handleChange }
             id="name"
             type="text"
             name="name"
-            placeholder={ infoUser.name }
+            value={ infoUser.name }
             data-testid="edit-input-name"
           />
         </label>
         <label htmlFor="email">
           Email:
           <input
+            onChange={ this.handleChange }
             id="email"
             type="text"
             name="email"
-            placeholder={ infoUser.email }
+            value={ infoUser.email }
             data-testid="edit-input-email"
           />
         </label>
         <label htmlFor="description">
           Descrição:
           <textarea
+            onChange={ this.handleChange }
             id="description"
             type="text"
             name="description"
-            placeholder={ infoUser.description }
+            valeu={ infoUser.description }
             data-testid="edit-input-description"
           />
         </label>
-        <img
-          id="image"
-          src={ infoUser.image }
-          alt="profile"
-          data-testid="edit-input-image"
-        />
+        <label htmlFor="image">
+          Imagem:
+          <input
+            onChange={ this.handleChange }
+            id="image"
+            type="text"
+            name="image"
+            value={ infoUser.image }
+            data-testid="edit-input-image"
+          />
+        </label>
         <button
+          onClick={ this.handleClick }
+          disable={ isDisable }
           type="submit"
           data-testid="edit-button-save"
         >
