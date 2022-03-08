@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../component/Header';
-import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import MusicCard from '../component/MusicCard';
 
 export default class Favorites extends Component {
