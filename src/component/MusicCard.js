@@ -38,11 +38,10 @@ export default class MusicCard extends Component {
   }
 
   removeFavoriteMusic = async () => {
+    const { removeMusic, track } = this.props;
     this.setState({ isLoading: true });
-    const { track } = this.props;
-    const { removeMusic } = this.props;
     await removeSong(track);
-    removeMusic(track);
+    if (typeof removeMusic === 'function') removeMusic(track);
     this.setState({ isLoading: false, isChecked: false });
   }
 
@@ -75,7 +74,9 @@ export default class MusicCard extends Component {
                   type="checkbox"
                   checked={ isChecked }
                   data-testid={ `checkbox-music-${trackId}` }
-                  onChange={ (event) => { this.handleChange(event); } }
+                  onChange={
+                    (event) => { this.handleChange(event); }
+                  }
                 />
               </label>
             </section>
