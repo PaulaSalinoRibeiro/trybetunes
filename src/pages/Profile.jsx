@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../component/Header';
 import { getUser } from '../services/userAPI';
+import { Container, UserInfo } from './styled';
+import  User  from '../assets/User.png';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -24,27 +26,27 @@ export default class Profile extends Component {
   renderUserInfo = () => {
     const { user } = this.state;
     return (
-      <section>
+      <UserInfo>
         <h2>{user.name}</h2>
+        <img src={ user.image ? user.image : User } alt={ user.name } />
         <p>{user.email}</p>
         <p>{user.description}</p>
-        <img src={ user.image } alt={ user.name } data-testid="profile-image" />
         <button type="button">
           <Link to="/profile/edit">Editar perfil</Link>
         </button>
-      </section>
+      </UserInfo>
     );
   }
 
   render() {
     const { isLoading } = this.state;
     return (
-      <div data-testid="page-profile">
+      <Container>
         <Header />
         {isLoading
           ? <p>Carregando...</p>
           : this.renderUserInfo()}
-      </div>
+      </Container>
     );
   }
 }

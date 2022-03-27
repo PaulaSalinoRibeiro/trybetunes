@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
+import { FaRegStar } from 'react-icons/fa';
+import { Tracks } from '../pages/styled';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 export default class MusicCard extends Component {
@@ -30,15 +32,14 @@ export default class MusicCard extends Component {
     }
   }
 
-  addFavoriteSong = async () => {
+  addFavoriteSong = async (track) => {
     this.setState({ isLoading: true });
-    const { track } = this.props;
     await addSong(track);
     this.setState({ isLoading: false, isChecked: true });
   }
 
-  removeFavoriteMusic = async () => {
-    const { removeMusic, track } = this.props;
+  removeFavoriteMusic = async (track) => {
+    const { removeMusic } = this.props;
     this.setState({ isLoading: true });
     await removeSong(track);
     if (typeof removeMusic === 'function') removeMusic(track);
@@ -47,42 +48,43 @@ export default class MusicCard extends Component {
 
   handleChange = (event) => {
     const { target: { checked } } = event;
+    const { track } = this.props;
     if (checked) {
-      this.addFavoriteSong();
+      this.addFavoriteSong(track);
     } else {
-      this.removeFavoriteMusic();
+      this.removeFavoriteMusic(track);
     }
   }
 
   render() {
-    const { track: { trackName, previewUrl, trackId } } = this.props;
+    const { track: { trackName, previewUrl } } = this.props;
     const { isLoading, isChecked } = this.state;
     return (
-      <div>
+      <>
         {isLoading
           ? <p>Carregando...</p>
           : (
-            <section>
-              <h4>{trackName}</h4>
-              <audio data-testid="audio-component" src={ previewUrl } controls>
-                <track kind="captions" />
-              </audio>
-              <label htmlFor="favorites">
-                Favorita
-                <input
-                  id="favorites"
-                  type="checkbox"
-                  checked={ isChecked }
-                  data-testid={ `checkbox-music-${trackId}` }
-                  onChange={
-                    (event) => { this.handleChange(event); }
-                  }
-                />
-              </label>
-            </section>
+            <Tracks>
+              <span>{trackName}</span>
+              <div>
+                <audio src={ previewUrl } controls>
+                  <track kind="captions" />
+                </audio>
+                <label htmlFor="favorites">
+                  <FaRegStar/>
+                  <input
+                    id="favorites"
+                    type="checkbox"
+                    checked={ isChecked }
+                    onChange={
+                      (event) => { this.handleChange(event); }
+                    }
+                  />
+                </label>
+              </div>
+            </Tracks>
           )}
-      </div>
-
+      </>
     );
   }
 }
@@ -91,7 +93,6 @@ MusicCard.propTypes = {
   track: PropType.shape({
     trackName: PropType.string,
     previewUrl: PropType.string,
-    trackId: PropType.number,
   }),
   removeMusic: PropType.func,
 }.isRequired;

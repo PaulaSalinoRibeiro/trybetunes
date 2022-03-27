@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Container } from './styled';
 
 export default class NotFound extends Component {
   render() {
     return (
-      <div data-testid="page-not-found">
+      <Container>
         <h1>Ops! Page Not Found =(</h1>
-      </div>
+      </Container>
     );
   }
 }

@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../component/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
-import '../component/css/search.css';
+import { Form, Container, ColectionAlbum } from './styled';
 
 export default class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       album: '',
       isDisable: true,
       colection: [],
       loading: false,
       artistName: undefined,
     };
-  }
+  
 
   handleSearchAPI = async (album) => {
     const res = await searchAlbumsAPI(album);
@@ -55,7 +53,6 @@ export default class Search extends Component {
       <div>
         <label htmlFor="album">
           <input
-            data-testid="search-artist-input"
             id="album"
             name="search"
             value={ album }
@@ -64,7 +61,6 @@ export default class Search extends Component {
         </label>
         <button
           type="button"
-          data-testid="search-artist-button"
           disabled={ isDisable }
           onClick={ this.handleClick }
         >
@@ -77,11 +73,10 @@ export default class Search extends Component {
   listOfAlbum = () => {
     const { colection } = this.state;
     return (
-      <section className="collectionOfAlbums">
+      <ColectionAlbum>
         {colection.map(({ artworkUrl100, collectionName, collectionId }) => (
           <section key={ collectionId }>
             <Link
-              data-testid={ `link-to-album-${collectionId}` }
               to={ `/album/${collectionId}` }
             >
               <img src={ artworkUrl100 } alt={ collectionName } />
@@ -89,16 +84,16 @@ export default class Search extends Component {
             </Link>
           </section>
         ))}
-      </section>
+      </ColectionAlbum>
     );
   }
 
   render() {
     const { loading, artistName, colection } = this.state;
     return (
-      <div data-testid="page-search">
+      <Container>
         <Header />
-        <main>
+        <Form>
           {loading
             ? <p>Carregando...</p>
             : this.inputSearch()}
@@ -115,8 +110,8 @@ export default class Search extends Component {
             && <h3>Nenhum álbum foi encontrado</h3>
           }
           {colection.length > 1 && this.listOfAlbum()}
-        </main>
-      </div>
+        </Form>
+      </Container>
     );
   }
 }

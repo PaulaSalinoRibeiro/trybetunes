@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '../component/Header';
 import { getUser, updateUser } from '../services/userAPI';
+import { Form,  Container } from './styled';
 
 export default class ProfileEdit extends Component {
   constructor(props) {
@@ -62,13 +63,13 @@ export default class ProfileEdit extends Component {
       isDisable } = this.state;
     return (
       <div>
-        <form>
+        <Form>
           <label htmlFor="name">
             Nome:
+            {' '}
             <input
               id="name"
               type="text"
-              data-testid="edit-input-name"
               name="name"
               value={ name }
               onChange={ this.handleChange }
@@ -76,10 +77,10 @@ export default class ProfileEdit extends Component {
           </label>
           <label htmlFor="email">
             Email:
+            {' '}
             <input
               id="email"
               type="text"
-              data-testid="edit-input-email"
               name="email"
               value={ email }
               onChange={ this.handleChange }
@@ -87,10 +88,10 @@ export default class ProfileEdit extends Component {
           </label>
           <label htmlFor="image">
             Imagem:
+            {' '}
             <input
               id="image"
               type="text"
-              data-testid="edit-input-image"
               name="image"
               value={ image }
               onChange={ this.handleChange }
@@ -98,10 +99,10 @@ export default class ProfileEdit extends Component {
           </label>
           <label htmlFor="description">
             Descrição:
+            {' '}
             <input
               id="description"
               type="text"
-              data-testid="edit-input-description"
               name="description"
               value={ description }
               onChange={ this.handleChange }
@@ -109,14 +110,13 @@ export default class ProfileEdit extends Component {
           </label>
           <button
             type="submit"
-            data-testid="edit-button-save"
             disabled={ isDisable }
             onClick={ this.handleClick }
             onChange={ this.handleChange }
           >
             Salvar
           </button>
-        </form>
+        </Form>
         {isRedirect && <Redirect to="/profile" />}
       </div>
     );
@@ -125,12 +125,12 @@ export default class ProfileEdit extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <div data-testid="page-profile-edit">
+      <Container>
         <Header />
         {loading
           ? <p>Carregando...</p>
           : this.renderForm()}
-      </div>
+      </Container>
     );
   }
 }

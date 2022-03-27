@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../component/Header';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import MusicCard from '../component/MusicCard';
+import { Container, Tracks } from '../pages/styled'
 
 export default class Favorites extends Component {
   constructor(props) {
@@ -31,25 +32,28 @@ export default class Favorites extends Component {
   renderListOfMusic = () => {
     const { favorites } = this.state;
     return (
-      <section>
+      <Tracks>
         {favorites.map((music) => (
           <section key={ music.trackName }>
-            <MusicCard track={ music } removeMusic={ this.removeMusic } />
+            <MusicCard
+              track={ music }
+              removeMusic={ this.removeMusic }
+            />
           </section>
         ))}
-      </section>
+      </Tracks>
     );
   }
 
   render() {
     const { isLoading } = this.state;
     return (
-      <div data-testid="page-favorites">
+      <Container>
         <Header />
         {isLoading
           ? <p>Carregando...</p>
           : this.renderListOfMusic()}
-      </div>
+      </Container>
     );
   }
 }

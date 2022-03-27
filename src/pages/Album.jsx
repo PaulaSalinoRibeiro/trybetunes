@@ -3,15 +3,13 @@ import PropType from 'prop-types';
 import Header from '../component/Header';
 import MusicCard from '../component/MusicCard';
 import getMusics from '../services/musicsAPI';
+import { Container, Main } from './styled';
 
 export default class Album extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       tracks: [],
       colection: undefined,
-    };
-  }
+  };
 
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
@@ -35,9 +33,9 @@ export default class Album extends Component {
   renderTracks = () => {
     const { tracks, colection } = this.state;
     return (
-      <section>
-        <h3 data-testid="artist-name">{colection.artistName}</h3>
-        <h4 data-testid="album-name">{colection.collectionName}</h4>
+      <div>
+        <h3>{colection.artistName}</h3>
+        <h4>{colection.collectionName}</h4>
         <img src={ colection.artworkUrl100 } alt={ colection.collectionName } />
         {tracks.map((track) => (
           <section
@@ -46,19 +44,19 @@ export default class Album extends Component {
             <MusicCard track={ track } />
           </section>
         ))}
-      </section>
+      </div>
     );
   }
 
   render() {
     const { tracks } = this.state;
     return (
-      <div data-testid="page-album">
+      <Container>
         <Header />
-        <main>
+        <Main>
           {tracks.length === 0 ? <p>Carregando...</p> : this.renderTracks()}
-        </main>
-      </div>
+        </Main>
+      </Container>
     );
   }
 }

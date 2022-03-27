@@ -1,39 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
-import './css/header.css';
+import { HeaderContainer } from '../pages/styled';
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       loading: true,
       userName: '',
-    };
-  }
+  };
 
   componentDidMount() {
-    getUser().then((res) => this.setState({ userName: res.name }))
+    getUser()
+      .then((res) => this.setState({ userName: res.name }))
       .then(() => this.setState({ loading: false }));
   }
 
   render() {
     const { userName, loading } = this.state;
     return (
-      <div>
-        <header
-          data-testid="header-component"
-        >
+      <HeaderContainer>
+        <header>
           {loading
             ? <p>Carregando...</p>
-            : <h1 data-testid="header-user-name" className="user">{userName}</h1>}
+            : <h1>{userName}</h1>}
         </header>
-        <nav className="nav-bar">
-          <Link to="/search" data-testid="link-to-search">Pesquisar</Link>
-          <Link to="/favorites" data-testid="link-to-favorites">Favoritas</Link>
-          <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
+        <nav>
+          <Link to="/search">Pesquisar</Link>
+          <Link to="/favorites">Favoritas</Link>
+          <Link to="/profile">Perfil</Link>
         </nav>
-      </div>
+      </HeaderContainer>
     );
   }
 }

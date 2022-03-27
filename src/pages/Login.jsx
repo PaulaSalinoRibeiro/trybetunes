@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
-import '../component/css/login.css';
+import { Form, Container } from './styled';
 
 export default class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       isDisable: true,
       loging: false,
       isRedirect: false,
       name: '',
     };
-  }
 
   componentDidUpdate() {
     const { loging } = this.state;
@@ -50,37 +47,35 @@ export default class Login extends Component {
   renderInput = () => {
     const { name, isDisable } = this.state;
     return (
-      <div data-testid="page-login">
+      <Form>
         <label htmlFor="name">
           <input
             id="name"
-            data-testid="login-name-input"
             value={ name }
             name="name"
             onChange={ this.handleChange }
           />
         </label>
         <button
-          data-testid="login-submit-button"
           type="submit"
           disabled={ isDisable }
           onClick={ this.handleClick }
         >
           Entrar
         </button>
-      </div>
+      </Form>
     );
   }
 
   render() {
     const { loging, isRedirect } = this.state;
     return (
-      <div className="loging">
+      <Container>
         {loging
           ? <p>Carregando...</p>
           : this.renderInput()}
         {isRedirect && <Redirect to="/search" />}
-      </div>
+      </Container>
     );
   }
 }
