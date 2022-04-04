@@ -25,6 +25,7 @@ export const Form = styled.div`
   input {
     background: rgb(225, 229, 235);
     border-radius: 15px;
+    display: flex;
     height:32px;
     margin-bottom: 18px;
     width: 300px;
@@ -41,8 +42,7 @@ export const Form = styled.div`
     border-radius: 15px;
     color: rgb(62, 66, 75);
     font-weight: 800;
-    height: 40px; 
-    margin-left: 12px;
+    height: 40px;
     width: 90px;
   };
 

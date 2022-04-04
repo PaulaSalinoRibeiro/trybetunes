@@ -50,7 +50,7 @@ export default class Search extends Component {
   inputSearch = () => {
     const { album, isDisable } = this.state;
     return (
-      <div>
+      <Form>
         <label htmlFor="album">
           <input
             id="album"
@@ -66,7 +66,7 @@ export default class Search extends Component {
         >
           Pesquisar
         </button>
-      </div>
+      </Form>
     );
   }
 

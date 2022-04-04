@@ -15,6 +15,7 @@ export default class Favorites extends Component {
 
   componentDidMount() {
     this.favoritesMusics();
+    this.removeMusic();
   }
 
   favoritesMusics = async () => {
@@ -37,7 +38,6 @@ export default class Favorites extends Component {
           <section key={ music.trackName }>
             <MusicCard
               track={ music }
-              removeMusic={ this.removeMusic }
             />
           </section>
         ))}
