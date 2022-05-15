@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as Emailvalidator from './emailvalidator';
+// import * as Emailvalidator from 'email-validator';
+import { createUser } from '../services/LocalStore';
 
 function Login() {
   const history = useHistory();
@@ -10,21 +11,21 @@ function Login() {
   const handleChange = (event) => {
     const {target: { name, value } } = event;
     setUser((prev) => ({ ...prev, [name]: value } ))
-    const isEmail = Emailvalidator.validade(user.email);
-    setDisabled(isEmail);
+    // const isEmail = Emailvalidator.validade(user.email);
+    const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email);
+    setDisabled(!validateEmail);
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    createUser({email: user.email});
     history.push('/search');
   }
 
   return (
     <>
       <h1>Login</h1>
-      
       <form onSubmit={handleSubmit}>
-        
         <label htmlFor="email">
           Email:
           <input
@@ -34,7 +35,6 @@ function Login() {
             onChange={handleChange}
           />
         </label>
-
         <label htmlFor="password">
           Password:
           <input
@@ -44,14 +44,12 @@ function Login() {
             onChange={handleChange}
           />
         </label>
-        
         <button
           type="submit"
           disabled={disabled}
         >
           Send
         </button>
-
       </form>
     </>
   )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
 import { FaRegStar } from 'react-icons/fa';
-import { Tracks } from '../pages/styled';
+import { Tracks } from '../styles/styled';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 export default class MusicCard extends Component {
