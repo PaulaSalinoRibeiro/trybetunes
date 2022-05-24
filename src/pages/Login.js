@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-// import * as Emailvalidator from 'email-validator';
-import { createUser } from '../services/LocalStore';
+import TunesContext from '../context/TunesContext';
 
 function Login() {
   const history = useHistory();
-  const [user, setUser] = useState({email: "", password: "",});
+  const { user, setUser } = useContext(TunesContext);
   const [disabled, setDisabled] = useState(true);
   
   const handleChange = (event) => {
     const {target: { name, value } } = event;
     setUser((prev) => ({ ...prev, [name]: value } ))
-    // const isEmail = Emailvalidator.validade(user.email);
     const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email);
     setDisabled(!validateEmail);
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUser({email: user.email});
     history.push('/search');
   }
 

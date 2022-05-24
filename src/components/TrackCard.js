@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 
+
 function TrackCard(props) {
   const [check, setCheck] = useState(false);
   const {track} = props;
   
   const handleChange = ({target}) => {
-    console.log(target.id);
+    
   }
 
   return (
