@@ -1,13 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import TunesContext from '../context/TunesContext';
 
 
-function TrackCard(props) {
+function TrackCard({track}) {
+  const {favorites, setFavorites} = useContext(TunesContext);
   const [check, setCheck] = useState(false);
-  const {track} = props;
   
-  const handleChange = ({target}) => {
-   console.log(track); 
-  }
+  const handleChange = () => {
+    setCheck(!check);
+    if (!favorites.some(song => song.trackId === track.trackId)) {
+      setFavorites([...favorites, track]);
+    };
+    if (check === true) {
+      const removeTrack = favorites.filter(song => song.trackId !== track.trackId);
+      setFavorites(removeTrack);
+    };
+  };
 
   return (
     <div>
