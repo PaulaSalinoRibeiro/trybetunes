@@ -1,7 +1,6 @@
 import React, {useState, useContext} from 'react';
 import TunesContext from '../context/TunesContext';
 
-
 function TrackCard({track}) {
   const {favorites, setFavorites} = useContext(TunesContext);
   const [check, setCheck] = useState(false);
@@ -11,16 +10,12 @@ function TrackCard({track}) {
     if (!favorites.some(song => song.trackId === track.trackId)) {
       setFavorites([...favorites, track]);
     };
-    if (check === true) {
-      const removeTrack = favorites.filter(song => song.trackId !== track.trackId);
-      setFavorites(removeTrack);
-    };
+    check && setFavorites(favorites.filter(song => song.trackId !== track.trackId));
   };
 
   return (
     <div>
-      <h1>Hello TrackCard</h1>
-      <p>{track.trackName}</p>
+      <h3>{track.trackName}</h3>
       <audio src={ track.previewUrl } controls>
         <track kind="captions" />
       </audio>
