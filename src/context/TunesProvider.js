@@ -2,7 +2,7 @@ import TunesContext from './TunesContext';
 import { useState } from 'react';
 
 function TunesProvider({children}) {
-  const [user, setUser] = useState({email: "", password: "",});
+  const [user, setUser] = useState({email: "", password: "", image: "", description: "",});
 
   const state = {
     user,

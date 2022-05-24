@@ -8,15 +8,11 @@ function Header() {
   return (
     <header>
       <nav>
-        <Link to="/search">Pesquisar</Link>
-        <Link to="/favorites">Favoritas</Link>
-        <Link to="/profile">Perfil</Link>
+        <Link to="/search">Search</Link>
+        <Link to="/favorites">Favorites</Link>
+        <Link to="/profile">Profile</Link>
       </nav>
-      <span>
-        {
-          user.email
-        }
-      </span>
+      <span>{user.email}</span>
     </header>
   )
 }

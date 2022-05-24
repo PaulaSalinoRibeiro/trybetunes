@@ -6,7 +6,7 @@ function TrackCard(props) {
   const {track} = props;
   
   const handleChange = ({target}) => {
-    
+   console.log(track); 
   }
 
   return (
