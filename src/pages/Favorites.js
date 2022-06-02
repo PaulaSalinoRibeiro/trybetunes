@@ -1,14 +1,36 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import TunesContext from '../context/TunesContext';
-import TrackCard from '../components/TrackCard';
+
 
 function Favorites() {
-  const {favorites} = useContext(TunesContext);
+  const {favorites, setFavorites} = useContext(TunesContext);
+  const [check, setCheck] =useState(true);
+
+  const handleChange = (track) => {
+    const newFavorites = favorites.filter(item => item.trackId !== track);
+    setFavorites(newFavorites);
+  }
+
   return (
     <>
       <h1>Favorites</h1>
       {
-        favorites?.map((track) => <TrackCard track={track} key={track.trackId} />)
+        favorites?.map(({trackId, trackName, previewUrl}) => (
+          <div key={trackId}>
+             <h3>{trackName}</h3>
+             <audio src={ previewUrl } controls>
+               <track kind="captions" />
+             </audio>
+             <label htmlFor={trackId}>
+               <input
+                 id={trackId} 
+                 type="checkbox"
+                 checked={check}
+                 onChange={() => handleChange(trackId)}
+               />
+             </label>
+          </div> 
+        ))
       }
     </>
   )

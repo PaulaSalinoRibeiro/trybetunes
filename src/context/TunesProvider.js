@@ -5,6 +5,7 @@ function TunesProvider({children}) {
   const [user, setUser] = useState({email: "", password: "", image: "", description: "",});
   const [favorites, setFavorites] = useState([]);
 
+
   const state = {
     user,
     setUser,
