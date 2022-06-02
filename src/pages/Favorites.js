@@ -1,10 +1,9 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import TunesContext from '../context/TunesContext';
 
 
 function Favorites() {
   const {favorites, setFavorites} = useContext(TunesContext);
-  const [check, setCheck] =useState(true);
 
   const handleChange = (track) => {
     const newFavorites = favorites.filter(item => item.trackId !== track);
@@ -25,7 +24,7 @@ function Favorites() {
                <input
                  id={trackId} 
                  type="checkbox"
-                 checked={check}
+                 checked="true"
                  onChange={() => handleChange(trackId)}
                />
              </label>

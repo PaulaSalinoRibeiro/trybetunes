@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import TunesContext from '../context/TunesContext';
 
+import { Container, Title, Form } from '../styles/Login';
+
 function Login() {
   const history = useHistory();
   const { user, setUser } = useContext(TunesContext);
@@ -20,9 +22,9 @@ function Login() {
   }
 
   return (
-    <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <Container>
+      <Title>Login</Title>
+      <Form onSubmit={handleSubmit}>
         <label htmlFor="email">
           Email:
           <input
@@ -44,11 +46,12 @@ function Login() {
         <button
           type="submit"
           disabled={disabled}
+          onSubmit={handleSubmit}
         >
           Send
         </button>
-      </form>
-    </>
+      </Form>
+    </Container>
   )
 }
 
