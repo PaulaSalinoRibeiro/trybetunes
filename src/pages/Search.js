@@ -3,6 +3,8 @@ import Header from '../components/Header';
 import AlbumCard from '../components/AlbumCard';
 import {searchAlbumsAPI} from '../services/fetchAPI';
 
+import {Container} from '../styles/Search'
+
 function Search() {
   const [search, setSearch] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -17,11 +19,12 @@ function Search() {
   const handleSubmit = async(event) => {
     event.preventDefault();
     const album = await searchAlbumsAPI(search)
-    setCollection(album)
+    setCollection(album);
+    setSearch('');
   }
 
   return (
-    <>
+    <Container>
       <Header />
       <div>
         <label htmlFor="search">
@@ -41,7 +44,7 @@ function Search() {
         </button>
       </div>
       <AlbumCard collection={collection} />
-    </>
+    </Container>
   )
 }
 

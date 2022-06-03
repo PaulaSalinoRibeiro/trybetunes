@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import {Container} from '../styles/AlbumCard';
+
 function AlbumCard(props) {
   const {collection} = props
   return (
-    <div>
+    <Container>
       {
         collection?.map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
           <div key={collectionId}>
@@ -16,7 +18,7 @@ function AlbumCard(props) {
           </div>
         ))
       }
-    </div>
+    </Container>
   )
 }
 

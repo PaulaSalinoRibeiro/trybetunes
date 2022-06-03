@@ -1,6 +1,8 @@
 import React, {useState, useContext} from 'react';
 import TunesContext from '../context/TunesContext';
 
+import {Container} from '../styles/TrackCard';
+
 function TrackCard({track}) {
   const {favorites, setFavorites} = useContext(TunesContext);
   const [check, setCheck] = useState(false);
@@ -14,7 +16,7 @@ function TrackCard({track}) {
   };
 
   return (
-    <div>
+    <Container>
       <h3>{track.trackName}</h3>
       <audio src={ track.previewUrl } controls>
         <track kind="captions" />
@@ -27,7 +29,7 @@ function TrackCard({track}) {
           onChange={handleChange}
         />
       </label>
-    </div>           
+    </Container>           
   )
 }
 
