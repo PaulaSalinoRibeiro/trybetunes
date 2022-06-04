@@ -25,6 +25,7 @@ export const Container = styled.div`
     border-radius: 5px;
     color: ${({theme}) => theme.colors.grey};
     font-size: 18px;
+    padding: 0 18px;
 
     &:hover {
       background-color: ${({theme}) => theme.colors.lightGreen};
