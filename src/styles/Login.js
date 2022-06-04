@@ -32,7 +32,7 @@ export const Form = styled.form`
     color: ${({theme}) => theme.colors.white};
     background-color: ${({theme}) => theme.colors.grey};
     width: 70%;
-    font-size: 24px;
+    font-size: 18px;
     border: none;
     border-radius: 5px;
   }
@@ -42,7 +42,7 @@ export const Form = styled.form`
     border: none;
     border-radius: 5px;
     color: ${({theme}) => theme.colors.grey};
-    font-size: 24px;
+    font-size: 18px;
     margin: auto;
     margin-top: 32px;
     width: 50%;

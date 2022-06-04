@@ -22,6 +22,7 @@ export const Container = styled.div`
     &:hover {
       background-color: ${({theme}) => theme.colors.darkGreen};
       filter: brightness(80%);
+      transform: scale(1.1);
     }
     
     a {

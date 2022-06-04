@@ -13,7 +13,7 @@ export const Container = styled.div`
     input {
     color: ${({theme}) => theme.colors.white};
     background-color: ${({theme}) => theme.colors.grey};
-    font-size: 24px;
+    font-size: 18px;
     border: none;
     border-radius: 5px;
     margin-right: 8px;
