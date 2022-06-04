@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import TunesContext from '../context/TunesContext';
 
-import {Container} from '../styles/TrackCard';
+import {Container, Title} from '../styles/TrackCard';
 
 function TrackCard({track}) {
   const {favorites, setFavorites} = useContext(TunesContext);
@@ -17,7 +17,9 @@ function TrackCard({track}) {
 
   return (
     <Container>
-      <h3>{track.trackName}</h3>
+      <Title>
+        <h3>{track.trackName}</h3>
+      </Title>
       <audio src={ track.previewUrl } controls>
         <track kind="captions" />
       </audio>
