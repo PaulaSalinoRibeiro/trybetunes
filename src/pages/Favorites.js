@@ -3,6 +3,8 @@ import TunesContext from '../context/TunesContext';
 
 import Header from '../components/Header';
 
+import {Container, Cards, Title} from '../styles/Favorites'; 
+
 function Favorites() {
   const {favorites, setFavorites} = useContext(TunesContext);
 
@@ -12,13 +14,16 @@ function Favorites() {
   }
 
   return (
-    <>
+    <Container>
       <Header />
       <h1>Favorites</h1>
+      <Cards>
       {
         favorites?.map(({trackId, trackName, previewUrl}) => (
           <div key={trackId}>
-             <h3>{trackName}</h3>
+            <Title>
+              <h3>{trackName}</h3>
+            </Title>
              <audio src={ previewUrl } controls>
                <track kind="captions" />
              </audio>
@@ -33,7 +38,8 @@ function Favorites() {
           </div> 
         ))
       }
-    </>
+      </Cards>
+    </Container>
   )
 }
 
