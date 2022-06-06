@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import TunesContext from '../context/TunesContext';
+import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai'
 
 import Header from '../components/Header';
 
@@ -27,14 +28,9 @@ function Favorites() {
              <audio src={ previewUrl } controls>
                <track kind="captions" />
              </audio>
-             <label htmlFor={trackId}>
-               <input
-                 id={trackId} 
-                 type="checkbox"
-                 checked="true"
-                 onChange={() => handleChange(trackId)}
-               />
-             </label>
+             <div onClick={() => handleChange(trackId)}>
+               <AiFillHeart /> 
+              </div>
           </div> 
         ))
       }

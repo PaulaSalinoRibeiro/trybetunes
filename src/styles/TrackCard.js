@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai'
 
 export const Container = styled.div`
   align-items: center;
@@ -27,4 +28,18 @@ export const Title = styled.div`
     color: ${({theme}) => theme.colors.white };
     text-align: center;
   }
+`;
+
+export const Icons = styled.div`
+  margin-right: 8px;
+`;
+
+export const IconFillHeart = styled(AiFillHeart)`
+  font-size: 24px;
+  color: ${({theme}) => theme.colors.darkGreen};
+`;
+
+export const IconOutlineHeart = styled(AiOutlineHeart)`
+  font-size: 24px;
+  color: ${({theme}) => theme.colors.darkGreen};
 `;

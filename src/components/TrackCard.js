@@ -1,7 +1,9 @@
 import React, {useState, useContext} from 'react';
 import TunesContext from '../context/TunesContext';
 
-import {Container, Title} from '../styles/TrackCard';
+// import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai'
+
+import {Container, Title, Icons, IconFillHeart, IconOutlineHeart} from '../styles/TrackCard';
 
 function TrackCard({track}) {
   const {favorites, setFavorites} = useContext(TunesContext);
@@ -23,14 +25,9 @@ function TrackCard({track}) {
       <audio src={ track.previewUrl } controls>
         <track kind="captions" />
       </audio>
-      <label htmlFor={track.trackId}>
-        <input
-          id={track.trackId} 
-          type="checkbox"
-          checked={check}
-          onChange={handleChange}
-        />
-      </label>
+      <Icons onClick={handleChange}>
+        {check ? <IconFillHeart /> : <IconOutlineHeart/> }
+      </Icons>
     </Container>           
   )
 }
