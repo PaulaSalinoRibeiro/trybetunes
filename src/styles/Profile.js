@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BiUserCircle } from 'react-icons/bi'
 
 export const Container = styled.div`
   width: 100%;
@@ -39,4 +40,11 @@ export const Container = styled.div`
       }
     }
   }
+`;
+
+export const IconUser = styled(BiUserCircle)`
+  margin-top: 42px;
+  font-size: 48px;
+  font-weight: 200;
+  color: ${({theme}) => theme.colors.darkGreen};
 `;

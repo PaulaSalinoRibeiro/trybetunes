@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import TunesContext from '../context/TunesContext';
 
-import {NavBar} from '../styles/NavBar';
+import {NavBar} from '../styles/Header';
 
 function Header() {
   const {user} = useContext(TunesContext);
