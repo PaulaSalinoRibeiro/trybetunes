@@ -2,6 +2,8 @@ import React, {useContext} from 'react';
 import { useHistory } from 'react-router-dom';
 import TunesContext from '../context/TunesContext';
 
+import {Container} from '../styles/ProfileEdit'
+
 function ProfileEdit() {
   const { user, setUser } = useContext(TunesContext);
   const history = useHistory();
@@ -19,7 +21,7 @@ function ProfileEdit() {
   }
 
   return(
-    <>
+    <Container>
       <form onSubmit={handleSubmit}>
         <label htmlFor="image">
           Image:
@@ -35,7 +37,7 @@ function ProfileEdit() {
         </label>
         <button type="submit" onClick={handleSubmit}>Save</button>
       </form>
-    </>
+    </Container>
   )
 }
 
