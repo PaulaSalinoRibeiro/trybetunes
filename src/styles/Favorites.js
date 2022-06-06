@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {AiFillHeart} from 'react-icons/ai'
 
 export const Container = styled.div`
   
@@ -32,4 +33,13 @@ export const Title = styled.div`
   h3 {
     color: ${({theme}) => theme.colors.white }
   }
+`;
+
+export const Icon = styled.div`
+  margin-left: 8px;
+`;
+
+export const IconFillHeart = styled(AiFillHeart)`
+  font-size: 24px;
+  color: ${({theme}) => theme.colors.darkGreen};
 `;

@@ -1,10 +1,9 @@
 import React, {useContext} from 'react';
 import TunesContext from '../context/TunesContext';
-import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai'
 
 import Header from '../components/Header';
 
-import {Container, Cards, Title} from '../styles/Favorites'; 
+import {Container, Cards, Title, Icon, IconFillHeart} from '../styles/Favorites'; 
 
 function Favorites() {
   const {favorites, setFavorites} = useContext(TunesContext);
@@ -28,9 +27,9 @@ function Favorites() {
              <audio src={ previewUrl } controls>
                <track kind="captions" />
              </audio>
-             <div onClick={() => handleChange(trackId)}>
-               <AiFillHeart /> 
-              </div>
+             <Icon onClick={() => handleChange(trackId)}>
+               <IconFillHeart /> 
+             </Icon>
           </div> 
         ))
       }
