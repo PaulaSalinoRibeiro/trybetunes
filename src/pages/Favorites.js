@@ -3,7 +3,7 @@ import TunesContext from '../context/TunesContext';
 
 import Header from '../components/Header';
 
-import {Container, Cards, Title, Icon, IconFillHeart} from '../styles/Favorites'; 
+import {Container, Cards, Title, IconFillHeart} from '../styles/Favorites'; 
 
 function Favorites() {
   const {favorites, setFavorites} = useContext(TunesContext);
@@ -27,9 +27,9 @@ function Favorites() {
              <audio src={ previewUrl } controls>
                <track kind="captions" />
              </audio>
-             <Icon onClick={() => handleChange(trackId)}>
+             <span onClick={() => handleChange(trackId)}>
                <IconFillHeart /> 
-             </Icon>
+             </span>
           </div> 
         ))
       }

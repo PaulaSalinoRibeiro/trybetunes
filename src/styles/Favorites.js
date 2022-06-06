@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {AiFillHeart} from 'react-icons/ai'
 
 export const Container = styled.div`
-  
+
   h1 {
     color: ${({theme}) => theme.colors.white};
     text-align: center;
@@ -19,24 +19,26 @@ export const Cards = styled.div`
   div {
     align-items: center;
     display: flex;
+    justify-content: space-between;
     margin-bottom: 12px;
-    width: 50%;
+    width: 40%;
 
-  }
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 `;
 
 export const Title = styled.div`
   display: flex;
   justify-content: center;
-  width: 40%;
+  width: 100%;
 
   h3 {
-    color: ${({theme}) => theme.colors.white }
+    color: ${({theme}) => theme.colors.white };
+    text-align: center;
   }
-`;
-
-export const Icon = styled.div`
-  margin-left: 8px;
 `;
 
 export const IconFillHeart = styled(AiFillHeart)`
