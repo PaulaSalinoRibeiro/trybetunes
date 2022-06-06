@@ -6,6 +6,7 @@ Neste projeto foi implementado uma aplicação capaz de reproduzir músicas das 
 
 - ReactJs
 - Context API
+- Styled-components
 
 # Exemplo da aplicação
 
